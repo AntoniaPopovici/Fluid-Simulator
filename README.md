@@ -81,7 +81,7 @@ You can tweak various parameters to change the behavior of the simulation:
 
 
 ## Recording
-Due to current limitations, attempting to record the simulation may cause the program to crash in Visual Studio. Please avoid recording the simulation directly from Visual Studio.
+Due to current limitations, attempting to record the simulation may cause the program to crash in Visual Studio.
 
 ## Inspiration
 This simulation is inspired by the paper "Real-Time Fluid Dynamics for Games" by Jos Stam. You can read the paper [here](<link-to-paper>).
