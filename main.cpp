@@ -6,7 +6,7 @@
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const int GRID_SIZE = 100;
-const float CELL_SIZE = 5.0f;
+const float CELL_SIZE = 8.0f; // Adjusted to fit the window better
 const float TIME_STEP = 0.1f;
 const float DIFFUSION = 0.0001f; // diffusion rate
 const float VISCOSITY = 0.0001f; // viscosity of the fluid
@@ -164,7 +164,7 @@ void display() {
 void update(int value) {
     step(fluid, TIME_STEP);
     glutPostRedisplay();
-    glutTimerFunc(16, update, 0);
+    glutTimerFunc(16, update, 0); // approximately 60 frames per second
 }
 
 void addDensity(int x, int y, float amount) {
@@ -196,6 +196,33 @@ void initFluid() {
     }
 }
 
+void resetFluid() {
+    std::fill(fluid.s.begin(), fluid.s.end(), 0.0f);
+    std::fill(fluid.density.begin(), fluid.density.end(), 0.0f);
+    std::fill(fluid.Vx.begin(), fluid.Vx.end(), 0.0f);
+    std::fill(fluid.Vy.begin(), fluid.Vy.end(), 0.0f);
+    std::fill(fluid.Vx0.begin(), fluid.Vx0.end(), 0.0f);
+    std::fill(fluid.Vy0.begin(), fluid.Vy0.end(), 0.0f);
+}
+
+void menu(int value) {
+    switch (value) {
+    case 0:
+        resetFluid();
+        break;
+    case 1:
+        exit(0);
+        break;
+    }
+}
+
+void createMenu() {
+    glutCreateMenu(menu);
+    glutAddMenuEntry("Reset Fluid", 0);
+    glutAddMenuEntry("Exit", 1);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -207,6 +234,8 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     glutMotionFunc(mouseMotion);
     glutTimerFunc(16, update, 0);
+
+    createMenu(); // Create the menu
 
     initFluid();
 
