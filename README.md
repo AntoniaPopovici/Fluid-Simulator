@@ -14,7 +14,7 @@ This project is a 2D fluid dynamics simulation based on the principles outlined 
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/AntoniaPopovici/Fluid-Simulator.git)
    ```
 2. Compile the code:
    ```sh
